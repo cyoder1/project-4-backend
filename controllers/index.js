@@ -1,6 +1,6 @@
 module.exports = {
     auth: require('./auth'),
     user: require('./user'),
-    // city: require('./city'),
+    project: require('./project'),
     // post: require('./post')
 }
