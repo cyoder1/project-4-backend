@@ -76,7 +76,7 @@ const getProjectByUser = (req, res) => {
         where: {
             user_project_id: req.params.id
         },
-        attributes: ['project_id', 'project_name', 'class', 'description', 'img', 'user_project_id'],
+        attributes: ['id', 'project_name', 'class', 'description', 'img', 'user_project_id'],
         // include: [{
         //     model: City
         // }]
