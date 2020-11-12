@@ -41,7 +41,7 @@ app.use('/auth', routes.auth);
 app.use('/project', routes.project);
 app.use('/auth/verify', verifyToken, routes.auth);
 app.use('/user', verifyToken, routes.user);
-// app.use('/post', verifyToken, routes.post);
+app.use('/project', verifyToken, routes.project);
 
 
 app.listen(process.env.PORT, () => {

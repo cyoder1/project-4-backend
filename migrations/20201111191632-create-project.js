@@ -24,7 +24,7 @@ module.exports = {
       user_project_id: {
         type: Sequelize.INTEGER,
         foreignKey: true,
-        autoIncrement: true,
+        // autoIncrement: true,
       },
       createdAt: {
         allowNull: false,

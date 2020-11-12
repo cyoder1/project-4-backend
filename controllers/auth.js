@@ -83,7 +83,7 @@ const login = (req, res) => {
 
 const verifyUser = (req, res) => {
     User.findByPk(req.user.id, {
-        attributes: ['id', 'username', 'updatedAt', 'email', 'name', 'img']
+        attributes: ['id', 'username', 'updatedAt', 'email', 'name']
     })
     .then(foundUser => {
         res.status(constants.SUCCESS).json(foundUser);

@@ -35,18 +35,21 @@ const constants = require('../constants');
 //     })
 // }
 
-// const createPost = (req, res) => {
-//     req.body.userId = req.user.id;
-//     req.body.cityId = req.params.city;
-
-//     Post.create(req.body)
-//     .then(newPost => {
-//         res.status(constants.SUCCESS).json(newPost)
-//     })
-//     .catch(err => {
-//         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
-//     })
-// }
+const createProject = (req, res) => {
+    console.log(req.body)
+    // req.body.userId = req.user.id;
+    req.body.user_project_id = parseInt(req.params.id);
+    console.log(req.body)
+    Project.create(req.body)
+    .then(newProject => {
+        console.log(newProject)
+        res.status(constants.SUCCESS).json(newProject)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+    })
+}
 
 // const getPostsByCity = (req, res) => {
 //     Post.findAll({
@@ -158,7 +161,7 @@ const getProjectByUser = (req, res) => {
 // }
 
 module.exports = {
-    // createPost,
+    createProject,
     // getPostsByCity,
     getProjectByUser,
     // getAllPosts,

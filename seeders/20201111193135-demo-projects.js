@@ -15,14 +15,14 @@ module.exports = {
         class: "Automotive",
         description: "Complete restoration project",
         img: "",
-        user_project_id: 2
+        user_project_id: 1
       },
       {
         project_name: "Wiring",
         class: "electrical",
         description: "wiring a garage",
         img: "",
-        user_project_id: 3
+        user_project_id: 1
       }
     ], {});
   },
