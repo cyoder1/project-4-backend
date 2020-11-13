@@ -103,7 +103,6 @@ const getProjectByUser = (req, res) => {
 }
 
 const editProject = (req, res) => {
-    console.log("im in!!!!")
     Project.update(req.body, {
         where: {
             id: req.params.projectId
@@ -127,7 +126,7 @@ const editProject = (req, res) => {
                 ]
             })
             .then(foundProject => {
-                console.log(foundProject)
+
                 if(foundProject === null){
                     res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Post Id')
                 }else{
@@ -135,7 +134,6 @@ const editProject = (req, res) => {
                 }
             })
             .catch(err => {
-                console.log(err)
                 res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
             })
         }
