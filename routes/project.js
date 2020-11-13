@@ -8,6 +8,6 @@ router.get('/:id', ctrl.project.getProjectByUser);
 // router.get('/:postId', ctrl.post.getPostById);
 // router.get('/:city/all', ctrl.post.getPostsByCity);
 // router.delete('/:postId', ctrl.post.deletePost);
-// router.put('/:postId', ctrl.post.editPost);
+router.put('/:projectId', ctrl.project.editProject);
 
 module.exports = router;

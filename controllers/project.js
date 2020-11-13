@@ -80,13 +80,14 @@ const getProjectByUser = (req, res) => {
         // include: [{
         //     model: City
         // }]
+        order: ['id']
     })
     .then(allProjects => {
-        console.log(req.params)
+        // console.log(req.params)
         res.status(constants.SUCCESS).json(allProjects)
     })
     .catch(err => {
-        console.log(err)
+        // console.log(err)
         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
     })
 
@@ -101,45 +102,48 @@ const getProjectByUser = (req, res) => {
     // })
 }
 
-// const editPost = (req, res) => {
-//     Post.update(req.body, {
-//         where: {
-//             id: req.params.postId
-//         },
-//         returning: true
-//     })
-//     .then(updatedPost => {
-//         if(updatedPost[0] === 0){
-//             res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Post Id')
-//         }else{
-//             Post.findByPk(req.params.postId, {
-//                 include: [
-//                     {
-//                         model: City,
-//                         attributes: ['name', 'state', 'img', 'country']
-//                     },
-//                     {
-//                         model: User,
-//                         attributes: ['id', 'username']
-//                     }
-//                 ]
-//             })
-//             .then(foundPost => {
-//                 if(foundPost === null){
-//                     res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Post Id')
-//                 }else{
-//                     res.status(constants.SUCCESS).json(foundPost)
-//                 }
-//             })
-//             .catch(err => {
-//                 res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
-//             })
-//         }
-//     })
-//     .catch(err => {
-//         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
-//     })
-// }
+const editProject = (req, res) => {
+    console.log("im in!!!!")
+    Project.update(req.body, {
+        where: {
+            id: req.params.projectId
+        },
+        returning: true
+    })
+    .then(updatedProject => {
+        if(updatedProject[0] === 0){
+            res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Post Id')
+        }else{
+            Project.findByPk(req.params.projectId, {
+                include: [
+                    // {
+                    //     model: City,
+                    //     attributes: ['name', 'state', 'img', 'country']
+                    // },
+                    {
+                        model: User,
+                        attributes: ['id', 'username']
+                    }
+                ]
+            })
+            .then(foundProject => {
+                console.log(foundProject)
+                if(foundProject === null){
+                    res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Post Id')
+                }else{
+                    res.status(constants.SUCCESS).json(foundProject)
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+            })
+        }
+    })
+    .catch(err => {
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+    })
+}
 
 // const deletePost = (req, res) => {
 //     Post.findByPk(req.params.postId)
@@ -166,6 +170,6 @@ module.exports = {
     getProjectByUser,
     // getAllPosts,
     // deletePost,
-    // editPost,
+    editProject,
     // getPostById
 }
