@@ -145,31 +145,37 @@ const editProject = (req, res) => {
     })
 }
 
-// const deletePost = (req, res) => {
-//     Post.findByPk(req.params.postId)
-//     .then(foundPost => {
-//         if(foundPost.userId === req.user.id){
-//             Post.destroy({
-//                 where: {id: req.params.postId}
-//             })
-//             .then(() => {
-//                 res.status(constants.SUCCESS).send('success')
-//             })
-//         } else {
-//             res.status(constants.FORBIDDEN).send('ERROR: Post not created by User')
-//         }
-//     })
-//     .catch(err => {
-//         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
-//     })
-// }
+const deleteProject = (req, res) => {
+    Project.findByPk(req.params.projectId)
+    // console.log(req.params.projectId)
+    // console.log("RIGHT HERE")
+    .then(foundProject => {
+        console.log(foundProject.user_project_id)
+        console.log(req.params.userId)
+        if(foundProject.user_project_id === parseInt(req.params.userId)){
+            console.log("made it")
+            Project.destroy({
+                where: {id: req.params.projectId}
+            })
+            .then(() => {
+                res.status(constants.SUCCESS).send('success')
+            })
+        } else {
+            res.status(constants.FORBIDDEN).send('ERROR: Post not created by User')
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+    })
+}
 
 module.exports = {
     createProject,
     // getPostsByCity,
     getProjectByUser,
     // getAllPosts,
-    // deletePost,
+    deleteProject,
     editProject,
     // getPostById
 }
