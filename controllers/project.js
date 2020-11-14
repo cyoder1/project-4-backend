@@ -148,10 +148,10 @@ const deleteProject = (req, res) => {
     // console.log(req.params.projectId)
     // console.log("RIGHT HERE")
     .then(foundProject => {
-        console.log(foundProject.user_project_id)
-        console.log(req.params.userId)
+        // console.log(foundProject.user_project_id)
+        // console.log(req.params.userId)
         if(foundProject.user_project_id === parseInt(req.params.userId)){
-            console.log("made it")
+            // console.log("made it")
             Project.destroy({
                 where: {id: req.params.projectId}
             })
@@ -163,7 +163,7 @@ const deleteProject = (req, res) => {
         }
     })
     .catch(err => {
-        console.log(err)
+        // console.log(err)
         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
     })
 }

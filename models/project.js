@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Project.associate = function(models) {
     Project.belongsTo(models.User, { foreignKey: 'user_project_id' })
-    // User.hasMany(models.Post, { foreignKey: 'userId' })
+    Project.hasMany(models.cost, { foreignKey: 'project_cost_id' })
   };
   return Project;
 };

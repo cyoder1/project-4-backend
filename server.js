@@ -37,7 +37,7 @@ const verifyToken = (req, res, next) => {
 }
 
 app.use('/auth', routes.auth);
-// app.use('/city', routes.city);
+app.use('/cost', routes.cost);
 // app.use('/post/all', routes.post);
 app.use('/project', routes.project);
 app.use('/auth/verify', verifyToken, routes.auth);
