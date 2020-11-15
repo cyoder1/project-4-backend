@@ -146,37 +146,37 @@ const editCost = (req, res) => {
     })
 }
 
-// const deleteProject = (req, res) => {
-//     Project.findByPk(req.params.projectId)
-//     // console.log(req.params.projectId)
-//     // console.log("RIGHT HERE")
-//     .then(foundProject => {
-//         // console.log(foundProject.user_project_id)
-//         // console.log(req.params.userId)
-//         if(foundProject.user_project_id === parseInt(req.params.userId)){
-//             // console.log("made it")
-//             Project.destroy({
-//                 where: {id: req.params.projectId}
-//             })
-//             .then(() => {
-//                 res.status(constants.SUCCESS).send('success')
-//             })
-//         } else {
-//             res.status(constants.FORBIDDEN).send('ERROR: Post not created by User')
-//         }
-//     })
-//     .catch(err => {
-//         // console.log(err)
-//         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
-//     })
-// }
+const deleteCost = (req, res) => {
+    Cost.findByPk(req.params.costId)
+    // console.log(req.params.projectId)
+    // console.log("RIGHT HERE")
+    .then(foundCost => {
+        // console.log(foundProject.user_project_id)
+        // console.log(req.params.userId)
+        if(foundCost.project_cost_id === parseInt(req.params.projectId)){
+            console.log("made it")
+            Cost.destroy({
+                where: {id: req.params.costId}
+            })
+            .then(() => {
+                res.status(constants.SUCCESS).send('success')
+            })
+        } else {
+            res.status(constants.FORBIDDEN).send('ERROR: Post not created by User')
+        }
+    })
+    .catch(err => {
+        // console.log(err)
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+    })
+}
 
 module.exports = {
     createCost,
     // getPostsByCity,
     getCostByProject,
     // getAllPosts,
-    // deleteProject,
+    deleteCost,
     editCost,
     // getPostById
 }
