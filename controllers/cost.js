@@ -36,21 +36,21 @@ const constants = require('../constants');
 //     })
 // }
 
-// const createProject = (req, res) => {
-//     console.log(req.body)
-//     // req.body.userId = req.user.id;
-//     req.body.user_project_id = parseInt(req.params.id);
-//     console.log(req.body)
-//     Project.create(req.body)
-//     .then(newProject => {
-//         console.log(newProject)
-//         res.status(constants.SUCCESS).json(newProject)
-//     })
-//     .catch(err => {
-//         console.log(err)
-//         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
-//     })
-// }
+const createCost = (req, res) => {
+    console.log(req.body)
+    // req.body.userId = req.user.id;
+    req.body.project_cost_id = parseInt(req.params.id);
+    console.log(req.body)
+    Cost.create(req.body)
+    .then(newCost => {
+        console.log(newCost)
+        res.status(constants.SUCCESS).json(newCost)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+    })
+}
 
 // const getPostsByCity = (req, res) => {
 //     Post.findAll({
@@ -103,46 +103,48 @@ const getCostByProject = (req, res) => {
     // })
 }
 
-// const editProject = (req, res) => {
-//     Project.update(req.body, {
-//         where: {
-//             id: req.params.projectId
-//         },
-//         returning: true
-//     })
-//     .then(updatedProject => {
-//         if(updatedProject[0] === 0){
-//             res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Post Id')
-//         }else{
-//             Project.findByPk(req.params.projectId, {
-//                 include: [
-//                     // {
-//                     //     model: City,
-//                     //     attributes: ['name', 'state', 'img', 'country']
-//                     // },
-//                     {
-//                         model: User,
-//                         attributes: ['id', 'username']
-//                     }
-//                 ]
-//             })
-//             .then(foundProject => {
-
-//                 if(foundProject === null){
-//                     res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Post Id')
-//                 }else{
-//                     res.status(constants.SUCCESS).json(foundProject)
-//                 }
-//             })
-//             .catch(err => {
-//                 res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
-//             })
-//         }
-//     })
-//     .catch(err => {
-//         res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
-//     })
-// }
+const editCost = (req, res) => {
+    Cost.update(req.body, {
+        where: {
+            id: req.params.costId
+        },
+        returning: true
+    })
+    .then(updatedProject => {
+        console.log(req.params.costId)
+        if(updatedProject[0] === 0){
+            res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Post Id')
+        }else{
+            Cost.findByPk(req.params.costId, {
+                include: [
+                    // {
+                    //     model: City,
+                    //     attributes: ['name', 'state', 'img', 'country']
+                    // },
+                    // {
+                    //     model: User,
+                    //     attributes: ['id', 'username']
+                    // }
+                ]
+            })
+            .then(foundCost => {
+                console.log("right here")
+                console.log(foundCost)
+                if(foundCost === null){
+                    res.status(constants.BAD_REQUEST).send('ERROR: Incorrect Post Id')
+                }else{
+                    res.status(constants.SUCCESS).json(foundCost)
+                }
+            })
+            .catch(err => {
+                res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+            })
+        }
+    })
+    .catch(err => {
+        res.status(constants.INTERNAL_SERVER_ERROR).send(`ERROR: ${err}`);
+    })
+}
 
 // const deleteProject = (req, res) => {
 //     Project.findByPk(req.params.projectId)
@@ -170,11 +172,11 @@ const getCostByProject = (req, res) => {
 // }
 
 module.exports = {
-    // createProject,
+    createCost,
     // getPostsByCity,
     getCostByProject,
     // getAllPosts,
     // deleteProject,
-    // editProject,
+    editCost,
     // getPostById
 }
