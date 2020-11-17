@@ -21,12 +21,12 @@ module.exports = {
         type: Sequelize.INTEGER,
         foreignKey: true,
       },
-      created_at: {
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date(),
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: new Date(),
